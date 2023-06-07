@@ -9,6 +9,16 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <title>Lab 10 - Return of the Party Horn</title>
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-M9J7P7Z');</script>
+  <!-- End Google Tag Manager -->
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-116S7CE2S6"></script>
@@ -33,6 +43,10 @@
 
 
 <body class="blue">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9J7P7Z" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header>
     <nav>
       <a href="speechSynth.html" title="Go to speech synthesizer">Speech Synthesizer</a>
@@ -58,62 +72,6 @@
       <audio class="hidden" src=""></audio>
     </section>
   </main>
-  <script>
-    function main() {
-      // Set clientSideID to your LaunchDarkly client-side ID
-      const clientSideID = '6480071d334c8812ae76e9fc';
-
-
-      // Set flagKey to the feature flag key you want to evaluate
-      const flagKey = 'blue-background';
-
-
-      // Set up the context properties. This context should appear on your
-      // LaunchDarkly contexts dashboard soon after you run the demo.
-      const context = {
-        kind: 'user',
-        key: 'example-context-key',
-        name: 'Sandy'
-      };
-
-
-      var div = document.createElement('div');
-      document.body.appendChild(div);
-      div.appendChild(document.createTextNode('Initializing...'));
-
-
-      const ldclient = LDClient.initialize(clientSideID, context);
-
-
-      function render() {
-        const flagValue = ldclient.variation(flagKey, false);
-        const label = 'Feature flag ' + flagKey + ' is ' + flagValue + ' for this context';
-        div.replaceChild(document.createTextNode(label), div.firstChild);
-      }
-
-
-      ldclient.on('initialized', () => {
-        div.appendChild(document.createTextNode('SDK successfully initialized!'), div.firstChild);
-      });
-      ldclient.on('failed', () => {
-        div.appendChild(document.createTextNode('SDK failed to initialize'), div.firstChild);
-      });
-      ldclient.on('ready', render);
-      ldclient.on('change', render);
-
-
-
-
-      // Here we ensure that the SDK shuts down cleanly and has a chance
-      // to deliver analytics envets to LaunchDarkly before the program
-      // exits. If analytics events are not delivered, the context properties
-      // and flag usage statistics will not appear on your dashboard.
-      // In a normal long-running application, the SDK would continue
-      // running and events would be delivered automatically in the background.
-      ldclient.close();
-    }
-    main();
-  </script>
 </body>
 
 
